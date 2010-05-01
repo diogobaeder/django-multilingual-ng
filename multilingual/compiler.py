@@ -32,7 +32,7 @@ class MultilingualSQLCompiler(SQLCompiler):
         qn2 = self.connection.ops.quote_name
 
         if hasattr(opts, 'translation_model'):
-            master_table_name = opts.db_table
+            master_table_name = self.query.join((None, opts.db_table, None, None))
             translation_opts = opts.translation_model._meta
             trans_table_name = translation_opts.db_table
             for language_code in get_language_code_list():
